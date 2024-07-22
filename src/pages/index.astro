@@ -1,0 +1,44 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.vue";
+import Move from "../components/Move.vue";
+import Wrapper from "../components/Wrapper.vue";
+import Modal from "../react/Modal";
+import Slider from "../components/Slider.vue";
+import { MyElement } from "../l33t/element.js";
+
+const sliderValue = 15;
+---
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <h1 class="mb-16 text-3xl italic">
+      Welcome to <span class="text-gradient">Astro</span>
+    </h1>
+
+    <a href="/about" class="text-red-700 bg-green-200">go to about page</a>
+
+    <Button class="mb-12" client:only="vue" />
+
+    <Wrapper client:load @bip="console.log('working')">
+      <Modal client:load>
+        <Slider client:only="vue" slider-value={sliderValue}>
+          <div slot="header">cool head ☃️</div>
+          <div slot="footer">
+            <MyElement client:only="lit">nice meme</MyElement>
+          </div>
+        </Slider>
+      </Modal>
+    </Wrapper>
+    <!-- <Move client:only="vue" /> -->
+  </main>
+</Layout>
+
+<style>
+  main {
+    background-color: mediumpurple;
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+</style>
